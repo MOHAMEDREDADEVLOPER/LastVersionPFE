@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getUserById } from '../../Slices/userSlice';
 
 const Header = () => {
@@ -16,6 +16,12 @@ const Header = () => {
     }
   }, [dispatch, id_client]);
   console.log(user);
+  const Navigate=useNavigate()
+  const handlerdeconecter=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('token') 
+    Navigate('/')
+  }
 
   return (
     <div className="bg-slate-200 shadow-md">
@@ -38,10 +44,11 @@ const Header = () => {
                 <li><a className="dropdown-item hover:bg-zinc-200" href="#">Message</a></li>
                 <li><Link to="/proprietes" className="dropdown-item hover:bg-zinc-200">Proprietes</Link></li>
                 <li><Link to="/ajouter-propriete" className="dropdown-item hover:bg-zinc-200">Ajouter Propriete</Link></li>
-                <li><a className="dropdown-item hover:bg-zinc-200" href="#">Deconnexion</a></li>
+                <li><a className="dropdown-item hover:bg-zinc-200" href="#"><button onClick={handlerdeconecter}>Deconnexion</button></a></li>
               </ul>
             </div>
             <Link to={`/proprietes`} className="block mb-2">propriete</Link>
+            <button onClick={handlerdeconecter}>Deconnexion</button>
           </div>
         ) : (
           <div className="flex gap-4">

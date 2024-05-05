@@ -3,10 +3,17 @@ import { DeleteOutlined } from '@ant-design/icons';
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import { getAnnonce } from "../../API";
+import { Link, useNavigate } from "react-router-dom";
 
 function Inventory() {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
+  const Navigate=useNavigate()
+  const handlerdeconecter=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('token') 
+    Navigate('/')
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -82,6 +89,10 @@ function Inventory() {
   return (
     <Space size={20} direction="vertical">
       <Typography.Title level={4}>Annonces</Typography.Title>
+      <Link to={'/Clients'}>Clients</Link>
+      {/* <Link to={`/Annonces`}>Annonce</Link> */}
+      <Link to={`/Dashboard`}>Dashboard</Link>
+      <button onClick={handlerdeconecter}>de conecter</button>
       <Table
         loading={loading}
         columns={columns}

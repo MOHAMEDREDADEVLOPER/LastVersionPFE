@@ -18,6 +18,7 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 ChartJS.register(
   CategoryScale,
@@ -30,6 +31,7 @@ ChartJS.register(
 
 function Dashboard() {
   const [statiques, setStatiques] = useState([]);
+  const Navigate=useNavigate()
 
   useEffect(() => {
     getAdminStatic().then((res)=>{
@@ -38,9 +40,21 @@ function Dashboard() {
   }, []);
   console.log(statiques);
 
+  const handlerdeconecter=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('token') 
+    Navigate('/')
+  }
+
   return (
     <Space size={20} direction="vertical">
-      <Typography.Title level={4}>Dashboard</Typography.Title>
+      <Typography.Title level={1}>Dashboard</Typography.Title>
+      <Link to={'/Clients'}>Clients</Link>
+      <Link to={`/Annonces`}>Annonce</Link>
+      {/* <Link to={`/Dashboard`}>Dashboard</Link> */}
+      <button onClick={handlerdeconecter}>de conecter</button>
+      
+      
       <Space direction="horizontal">
       <DashboardCard
   icon={

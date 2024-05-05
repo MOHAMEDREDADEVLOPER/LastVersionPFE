@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getClient } from "../../API";
 import axios from 'axios';
 import { UserSwitchOutlined  ,LockOutlined } from '@ant-design/icons';
+import { Link, useNavigate } from "react-router-dom";
 
 function Customers() {
   const [loading, setLoading] = useState(false);
@@ -114,10 +115,21 @@ function Customers() {
       )
     }
   ];
+  const Navigate=useNavigate()
+  const handlerdeconecter=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('token') 
+    Navigate('/')
+  }
+  
 
   return (
     <Space size={20} direction="vertical">
       <Typography.Title level={4}>Client</Typography.Title>
+      {/* <Link to={'/Clients'}>Clients</Link> */}
+      <Link to={`/Annonces`}>Annonce</Link>
+      <Link to={`/Dashboard`}>Dashboard</Link>
+      <button onClick={handlerdeconecter}>de conecter</button>
       <Table
         loading={loading}
         columns={columns}
