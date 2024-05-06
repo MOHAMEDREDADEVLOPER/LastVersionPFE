@@ -2,12 +2,21 @@ import {  LogoutOutlined} from "@ant-design/icons";
 import {  Button, Drawer,Image, List, Space, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getComments, getOrders } from "../../API";
+import { useNavigate } from "react-router-dom";
+import { getUserById } from "../../Component/Slices/userSlice";
 
 function AppHeader() {
   const [comments, setComments] = useState([]);
   const [orders, setOrders] = useState([]);
   const [commentsOpen, setCommentsOpen] = useState(false);
   const [notificationsOpen, setNotificationsOpen] = useState(false);
+  const id=localStorage.getItem('id');
+  const Navigate=useNavigate()
+  const handlerdeconecter=()=>{
+    localStorage.removeItem('id')
+    localStorage.removeItem('token') 
+    Navigate('/')
+  }
 
   useEffect(() => {
     getComments().then((res) => {
@@ -26,7 +35,7 @@ function AppHeader() {
       ></Image>
       <Typography.Title>Reda Dashboard</Typography.Title>
       <Space>
-      <Button type="primary"  icon={<LogoutOutlined/>}>
+      <Button type="primary"  icon={<LogoutOutlined/>} onClick={handlerdeconecter}>
       Logout
     </Button>
       </Space>

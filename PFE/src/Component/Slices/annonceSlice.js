@@ -1,12 +1,21 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// Action asynchrone pour charger les annonces depuis l'API
-export const fetchAnnonces = createAsyncThunk(
-  'annonces/fetchAnnonces',
-  async () => {
-    const response = await axios.get('http://127.0.0.1:8000/api/annonce');
-    return response.data;
+export const filterAnnonces = createAsyncThunk(
+  'annonces/filterAnnonces',
+  async ({ id_categorie, id_secteur, statut }) => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/filterAnnonce', {
+        params: {
+          id_categorie,
+          id_secteur,
+          statut
+        }
+      });
+      return response.data;
+    } catch (error) {
+      throw Error('Failed to filter announcements');
+    }
   }
 );
 
@@ -19,25 +28,23 @@ const initialState = {
 const annoncesSlice = createSlice({
   name: 'annonces',
   initialState,
-  reducers: {
-    // Ajoutez des reducers synchrones ici si nécessaire
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAnnonces.pending, (state) => {
+      .addCase(filterAnnonces.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(fetchAnnonces.fulfilled, (state, action) => {
+      .addCase(filterAnnonces.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.annonces = action.payload;
       })
-      .addCase(fetchAnnonces.rejected, (state, action) => {
+      .addCase(filterAnnonces.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
       });
   }
 });
 
-export const selectAllAnnonces = (state) => state.annonces.annonces;
+export const selectFilteredAnnonces = (state) => state.annonces.annonces;
 
 export default annoncesSlice.reducer;

@@ -10,6 +10,10 @@ export const getClient=()=>{
 export const getAnnonce=()=>{
   return fetch("http://127.0.0.1:8000/api/admin/annonces").then((res) => res.json());
 };
+export const getville=()=>{
+  return fetch("http://127.0.0.1:8000/api/villes").then((res) => res.json());
+};
+
 export const gettreeannonce=()=>{
   return fetch("http://127.0.0.1:8000/api/admin/treeannonce").then((res) => res.json());
 };

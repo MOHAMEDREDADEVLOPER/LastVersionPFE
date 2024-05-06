@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVilles } from '../../Slices/villeSlice';
-import axios from 'axios'
+import axios from 'axios';
+import {useNavigate} from 'react-router-dom';
 
 const Inscription = () => {
 
@@ -13,6 +14,7 @@ const Inscription = () => {
     const [telephone, setTelephone] = useState('');
     const [ville, setVille] = useState('');
     const { villes, isLoading, isError } = useSelector(state => state.ville);
+    const Navigate=useNavigate();
 
     const dispatch = useDispatch();
     useEffect(() => {
@@ -31,10 +33,9 @@ const Inscription = () => {
                 'motpasse': motpasse,
                 'telephone': telephone,
                 'id_ville': ville,
-
-
             });
-            console.log(response.data);
+            // console.log(response.data);
+            Navigate('/login')
             setNom('');
             setGenre('');
             setAge('');

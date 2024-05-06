@@ -53,10 +53,12 @@ Route::put('/client/{id}',[ClientController::class,"update"]);
 Route::delete('/client/{id}',[ClientController::class,"destroy"]);
 //annonce
 Route::get('/annonce',[AnnonceController::class,"index"]);
+Route::get('/filterAnnonce',[AnnonceController::class,"filterAnnonce"]);
 Route::post('/annonce',[AnnonceController::class,"store"]);
 Route::put("/changestatus/{id}",[AnnonceController::class,"changestatus"]);
 Route::put('/annonce/{id}',[AnnonceController::class,"update"]);
 Route::delete('/annonce/{id}',[AnnonceController::class,"destroy"]);
+
 //favoris
 Route::get('/favoris',[FavorisController::class,"index"]);
 Route::get('/favoris/{id_client}',[FavorisController::class,"show"]);

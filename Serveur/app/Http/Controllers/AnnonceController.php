@@ -65,4 +65,38 @@ class AnnonceController extends Controller
         $annonce->save();
         return response()->json($annonce);
     }
+    public function filterAnnonce(Request $request)
+{
+    $id_categorie = $request->input('id_categorie');
+    $id_secteur = $request->input('id_secteur');
+    $statut = $request->input('statut');
+
+    $query = Annonce::query();
+
+    if ($id_categorie !== null) {
+        $query->where('id_categorie', $id_categorie);
+    }
+
+    if ($id_secteur !== null) {
+        $query->where('id_secteur', $id_secteur);
+    }
+
+    if ($statut !== null) {
+        $query->where('statut', $statut);
+    }
+
+    $annonces = $query->with('secteur:id,nom', 'client', 'categorie:id,nom')->get();
+
+    $ids = $annonces->pluck('id');
+    $images = Image::whereIn('id_annonce', $ids)->get();
+
+    $imagesGrouped = $images->groupBy('id_annonce');
+    
+    $annonces->each(function ($annonce) use ($imagesGrouped) {
+        $annonce->images = $imagesGrouped[$annonce->id] ?? [];
+    });
+
+    return $annonces;
+}
+
 }

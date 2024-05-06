@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../Header/Header';
 import Filter from '../Filters/Filter'
 import ListAnnonce from '../Cards/ListAnnonce';
@@ -7,6 +7,8 @@ import About from '../About/About';
 import Footer from '../Footer/Footer';
 import Propre from '../Propre/Propre';
 function Accueil() {
+  const [data,setdata]=useState([]);
+  console.log(data);
   return (
     <div className="min-h-screen">
       <Header />
@@ -21,8 +23,8 @@ function Accueil() {
         </div>
       </div>
          </div>
-      <Filter  />
-      <ListAnnonce />
+      <Filter setdata={setdata} />
+      <ListAnnonce  data={data}/>
       <About />
       <Propre />
       <Footer />
