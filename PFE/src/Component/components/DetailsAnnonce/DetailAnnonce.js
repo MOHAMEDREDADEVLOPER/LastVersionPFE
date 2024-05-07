@@ -148,14 +148,14 @@ const DetailAnnonce = () => {
 
           <div className="lg:w-1/2">
             <Slider {...settings}>
-        {images.map((image, index) => (
+        {/* {images.map((image, index) => (
           <img
             key={index}
             src={image.src}
             alt={`Image ${index + 1}`}
             className="w-full h-96 mb-4 rounded-2xl rounded-t-xl m"
           />
-        ))}
+        ))} */}
       </Slider>
 
             <div className="flex items-center mt-5 ml-3 justify-center">
@@ -186,7 +186,7 @@ const DetailAnnonce = () => {
           <polygon points="80,80 70,70" />
         </svg>
       </div>
-    </div>
+    </div> 
             <p className="text-gray-700 mb-4 text-center">{annonce ? annonce.description : ''}</p>
           </div>
           <div className="lg:w-1/2 lg:pl-8">
@@ -287,7 +287,7 @@ const DetailAnnonce = () => {
           </div>
         </div>
       </div>
-      <ListAnnonce />
+      {/* <ListAnnonce /> */}
       <Footer />
     </div>
   );

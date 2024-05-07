@@ -29,13 +29,13 @@ export default function Filter({setdata}) {
       <FilterType setshowType={setshowType} />
       <FilterVille  setshowville={setshowville} />
       <FilterSecteur showville={showville} setshowsecteur={setshowsecteur}/>
-      <button 
+      {/* <button 
       className="bg-neutral-100  border lg:backdrop-blur  border-gray-300 shadow-lg hover:bg-neutral-300 transition w-full lg:max-w-[162px] max-h-[84px] rounded-lg flex justify-center items-center text-white text-lg"
       
       >
         <img src='/images/magnifying-glass_4814875.png' alt='#' className='w-9 '/>
       <h2 className="text-sm font-semibold  text-gray-700">Rechercher</h2>
-      </button>
+      </button> */}
     </div>
   );
 }

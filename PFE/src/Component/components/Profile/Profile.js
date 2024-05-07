@@ -113,7 +113,7 @@ const Profile = () => {
                             </div>
                         </div>
                     </div>
-                    <button onClick={HandlerChangePassword} className='btn btn-primary'>er</button>
+                    <button onClick={HandlerChangePassword} className='btn btn-primary'>Enregistrer</button>
                     <div className='flex justify-end'>
                         {/* <button type="button" className="btn w-72 text-center bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-3 m  rounded" data-bs-toggle="modal" 
                         data-bs-target="#exampleModal" 

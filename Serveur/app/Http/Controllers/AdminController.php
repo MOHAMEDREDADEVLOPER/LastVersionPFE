@@ -14,7 +14,7 @@ class AdminController extends Controller
     $clients = Client::count();
     $annonces = Annonce::count();
     $statusdisponible = Annonce::where("statut", "vrais")->count();
-    $statusnodisponible = Annonce::where("statut", "fault")->count();
+    $statusnodisponible = Annonce::where("statut", "Disponible")->count();
     $prixTotal = Annonce::sum('prix');
     $data = [
         "clients" => $clients,

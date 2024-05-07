@@ -31,7 +31,7 @@ class AnnonceController extends Controller
         $annonce->adresse=$request->adresse;
         $annonce->statut=$request->statut;
         $annonce->typeAnnonce=$request->typeAnnonce;
-        $annonce->nombre_chambres=$request->nombre_chambres;
+        $annonce->nombre_chambres=null;
         $annonce->id_categorie=$request->id_categorie;
         $annonce->id_client=$request->id_client;
         $annonce->id_secteur=$request->id_secteur;
@@ -61,7 +61,7 @@ class AnnonceController extends Controller
     }
     public function changestatus($id){
         $annonce=Annonce::find($id);
-        $annonce->statut="fault";
+        $annonce->statut="vente";
         $annonce->save();
         return response()->json($annonce);
     }
