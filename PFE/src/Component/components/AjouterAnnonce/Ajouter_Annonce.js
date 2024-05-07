@@ -110,7 +110,6 @@ const Ajouter_Annonce = () => {
 
   const [selectedValue, setselectedValue] = useState('');
   const [isDesiredCategory, setIsDesiredCategory] = useState(false);
-
   const handleChange3 = (event) => {
       setselectedValue(event.target.value);
       if (event.target.value === "Appartements" || event.target.value === "Maisons" || event.target.value === "Villas") {
